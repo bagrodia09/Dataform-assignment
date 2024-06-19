@@ -1,0 +1,19 @@
+config {
+    type: "table",
+    schema: "imdb_dataform_dataset",
+    name: "top_rated_movies"
+}
+
+SELECT
+  DISTINCT movie_name,
+  total_votes,
+  average_rating,
+  release_year,
+  genres
+FROM
+  ${ref("movie_details")}
+ORDER BY
+  average_rating DESC,
+  total_votes DESC
+LIMIT
+  10

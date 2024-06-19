@@ -1,0 +1,40 @@
+config {
+    type: "table",
+    schema: "imdb_dataform_dataset",
+    name: "movie_details"
+}
+
+SELECT
+  tb.tconst,
+  tb.original_title AS movie_name,
+  tr.num_votes AS total_votes,
+  tb.start_year AS release_year,
+  tb.genres,
+  tr.average_rating,
+  tp.nconst,
+  nb.primary_name AS director_name,
+  tp.characters AS Main_Character,
+  tp.category AS Profession
+FROM
+  `bigquery-public-data.imdb.title_basics` AS tb
+JOIN
+  `bigquery-public-data.imdb.title_ratings` AS tr
+USING
+  (tconst)
+JOIN
+  `bigquery-public-data.imdb.title_crew` AS tc
+USING
+  (tconst)
+JOIN
+  `bigquery-public-data.imdb.title_principals` AS tp
+USING
+  (tconst)
+JOIN
+  `bigquery-public-data.imdb.name_basics` AS nb
+ON
+  tp.nconst = nb.nconst
+WHERE
+  tb.title_type = 'movie'
+  AND tb.genres IS NOT NULL
+  AND tc.directors IS NOT NULL
+  AND tp.characters IS NOT NULL

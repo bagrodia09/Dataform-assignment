@@ -1,0 +1,15 @@
+config {
+    type: "table",
+    schema: "imdb_dataform_dataset",
+    name: "movies_by_director"
+}
+
+SELECT
+  director_name,
+  COUNT(*) AS total_movies_directed
+FROM
+  ${ref("movie_details")}
+GROUP BY
+  director_name
+ORDER BY
+  total_movies_directed DESC

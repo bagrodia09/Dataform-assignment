@@ -1,0 +1,10 @@
+config {
+    type: "table",
+    schema: "imdb_dataform_dataset",
+    name: "unique_movie_details"
+}
+
+SELECT
+  DISTINCT *
+FROM
+  ${ref("movie_details")}
