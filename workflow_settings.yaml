@@ -1,5 +1,5 @@
 defaultProject: hybrid-matrix-425011-p9
-defaultLocation: northamerica-northeast1
-defaultDataset: dataform
+defaultLocation: US
+defaultDataset: imdb_dataform_dataset
 defaultAssertionDataset: dataform_assertions
 dataformCoreVersion: 3.0.0-beta.4
